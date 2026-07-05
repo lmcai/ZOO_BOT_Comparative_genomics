@@ -52,7 +52,7 @@ You can add figures like this:
 
 **Figure 1** Test figure caption
 ```
-The `!` and `[]` signs ask Markdown to look for a figure to display. The path in the parenthesis `(misc/test.png)` points Markdown to the relative path of the file, which is stored in the folder `misc` and named as `test.png`. The figure will be displayed like this:
+The `![]` signs ask Markdown to look for a figure to display. The path in the parenthesis `(misc/test.png)` points Markdown to the relative path of the file, which is stored in the folder `misc` and named as `test.png`. The figure will be displayed like this:
 
 ![Alt text for figure](misc/test.png)
 
