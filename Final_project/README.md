@@ -17,9 +17,7 @@ Frame your question and connect it with the literature. Why is this question imp
 Clearly describe your data source and analyses here. When describing an analysis, consider including the following components: 
 
 - Input data: What is the input data? Where did you find these data? Did you take any actions to reformat it for the analysis?
-
 - Software: What computational program did you use? Which version? Using what parameters?
-
 - Command lines: You can record the command lines you used for the analysis in GitHub like this:
 ```
 software input > output
@@ -63,11 +61,7 @@ The `![]` signs ask Markdown to look for a figure to display. The path in the pa
 Cite at least 10 references throughout the summary. 
 
 When do you need to cite?
-
 - Introducing what others did in the past
-
 - Citing a method/software
-
 - Comparing your results to others
-
 - Many more
