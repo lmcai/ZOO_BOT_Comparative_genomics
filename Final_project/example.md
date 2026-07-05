@@ -18,7 +18,7 @@ To test this hypothesis, coding sequences from multiple bird species representin
 
 # II. Methods
 
-## Dataset
+## 1. Dataset
 
 Thirty-six bird species were included in this study.
 
@@ -33,9 +33,9 @@ Metadata including habitat elevation and taxonomy were obtained from the fiction
 
 ---
 
-## Sequence alignment
+## 2. Sequence alignment
 
-Protein sequences were aligned using MAFFT v7.540.
+Protein sequences were aligned using MAFFT v7.540 (Katoh et al., 2009).
 
 ```bash
 mafft --auto COX3_protein.fasta > COX3_aligned.faa
@@ -49,9 +49,9 @@ pal2nal.pl COX3_aligned.faa COX3_cds.fasta -output paml > COX3.phy
 
 ---
 
-## Phylogenetic analysis
+## 3. Phylogenetic analysis
 
-A maximum likelihood phylogeny was inferred using IQ-TREE2.
+A maximum likelihood phylogeny was inferred using IQ-TREE3 (Wong et al., 2026).
 
 ```bash
 iqtree2 \
@@ -64,9 +64,9 @@ iqtree2 \
 
 ---
 
-## Positive selection analysis
+## 4. Positive selection analysis
 
-Branch-site models were implemented in PAML 4.10.
+Branch-site models were implemented in PAML 4.10 (Yang, 2007).
 
 Foreground branches included all independent high-altitude lineages.
 
@@ -79,7 +79,7 @@ Significance was determined using χ² tests.
 
 ---
 
-## Detection of convergent amino acid substitutions
+## 5. Detection of convergent amino acid substitutions
 
 Convergent substitutions were identified using ConvergeAA v2.1.
 
@@ -88,29 +88,6 @@ Only substitutions satisfying the following criteria were retained:
 - occurred independently ≥3 times
 - posterior probability >0.95
 - located in conserved protein regions
-
----
-
-## Protein structure prediction
-
-Protein structures were predicted using AlphaFold2.
-
-Mutational effects on protein stability were estimated using FoldX.
-
----
-
-## Software
-
-| Software | Version | Purpose |
-|----------|---------|---------|
-| MAFFT | 7.540 | Multiple sequence alignment |
-| PAL2NAL | 14 | Codon alignment |
-| IQ-TREE2 | 2.3.6 | Phylogenetic inference |
-| PAML | 4.10 | Positive selection |
-| ConvergeAA | 2.1 | Convergent evolution |
-| AlphaFold2 | 2.3 | Protein prediction |
-| FoldX | 5.1 | Stability prediction |
-| R | 4.5.0 | Statistical analyses |
 
 ---
 
@@ -138,11 +115,6 @@ Although only a single mitochondrial gene was examined, this study demonstrates 
 
 ---
 
-![Protein structure](misc/structure.png)
-
-**Figure 2.** Predicted three-dimensional structure of COX3. Sites identified under positive selection are highlighted in blue, while convergent amino acid substitutions are shown in red.
-
----
 
 ## Tables
 
@@ -192,8 +164,7 @@ Bird_COX3_Project/
 │   └── statistics/
 │
 └── misc/
-    ├── phylogeny.png
-    └── structure.png
+    └── phylogeny.png
 ```
 
 ---
