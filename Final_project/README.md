@@ -52,6 +52,6 @@ You can add figures like this:
 
 **Figure 1** Test figure caption
 ```
-![Alt text for figure](mics/test.png)
+![Alt text for figure](misc/test.png)
 
 **Figure 1** Test figure caption
