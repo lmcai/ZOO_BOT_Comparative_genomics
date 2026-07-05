@@ -1,6 +1,6 @@
 # Final project report guideline
 
-This is a guideline for writing your GitHub summary page for your final project. Overall speaking, it should follow an Introduction-Methods-Results/Discussion structure.
+This is a guideline for writing your GitHub summary `.md` file for your final project. Overall speaking, it should follow an Introduction-Methods-Results/Discussion structure. An example of the summary is provided as `example.md`.
 
 _______________________________
 
