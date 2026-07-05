@@ -2,6 +2,8 @@
 
 This is a guideline for writing your GitHub summary page for your final project. Overall speaking, it should follow an Introduction-Methods-Results/Discussion structure.
 
+_______________________________
+
 ## Title of the project
 
 The title should be succinct and informative. What is the organism you are working with? What hypothesis do you want to test? What conclusion have you reached?
