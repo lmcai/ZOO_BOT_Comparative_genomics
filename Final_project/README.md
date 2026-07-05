@@ -37,7 +37,7 @@ For tables and figures, make sure you have captions. In a GitHub markdown file, 
 | A        | B        | C        |
 | D        | E        | F        |
 ```
-which will look like this:
+The double stars `**` quote the text that needs to be in bold font. The pipes `|` and underscores `_` delineate the columns and title rows. This table will be displayed like this:
 
 **Table 1** Test table caption
 
