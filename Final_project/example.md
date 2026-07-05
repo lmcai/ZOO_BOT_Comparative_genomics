@@ -95,28 +95,11 @@ Only substitutions satisfying the following criteria were retained:
 
 The inferred phylogeny recovered all expected avian relationships with strong bootstrap support (>98%; Figure 1). Branch-site analyses detected significant evidence of positive selection along six independent high-altitude lineages (Likelihood Ratio Test, **P = 0.003**).
 
-Overall, five codons showed signatures of positive selection (Table 1). Three of these sites (positions 67, 143, and 212) experienced repeated amino acid substitutions across unrelated mountain birds, suggesting convergent evolution.
-
-Interestingly, the substitution **I143V** evolved independently in four separate clades. Structural modeling predicted that this mutation slightly stabilized the transmembrane helix surrounding the catalytic center (ΔΔG = −0.74 kcal/mol), potentially improving electron transport efficiency under hypoxic conditions.
-
-Convergence analysis identified significantly more repeated amino acid substitutions among high-altitude taxa than expected by chance (permutation test, **P < 0.001**). Most convergent changes occurred in highly conserved regions of the protein, indicating adaptive rather than neutral evolution.
-
-Together, these findings support the hypothesis that **COX3** has repeatedly experienced positive selection during adaptation to high-altitude environments. Because mitochondrial respiration is fundamental to aerobic metabolism, repeated modification of COX3 may represent one molecular mechanism enabling efficient ATP production under chronic hypoxia.
-
-Although only a single mitochondrial gene was examined, this study demonstrates how comparative genomics can identify repeated adaptive evolution across distantly related species. Future work incorporating additional OXPHOS genes, larger taxonomic sampling, and functional biochemical assays would help determine whether convergent positive selection acts across the entire respiratory pathway.
-
----
-
-## Figures
-
 ![Species phylogeny](misc/phylogeny.png)
 
 **Figure 1.** Maximum likelihood phylogeny of 36 bird species inferred from COX3 coding sequences. Branches highlighted in red represent high-altitude lineages tested as foreground branches in the branch-site analysis.
 
----
-
-
-## Tables
+Overall, five codons showed signatures of positive selection (Table 1). Three of these sites (positions 67, 143, and 212) experienced repeated amino acid substitutions across unrelated mountain birds, suggesting convergent evolution.
 
 **Table 1.** Positively selected codons identified by branch-site analysis.
 
@@ -128,7 +111,13 @@ Although only a single mitochondrial gene was examined, this study demonstrates 
 | 175 | 0.955 | 3.71 | None |
 | 212 | 0.988 | 5.94 | A→T (3 lineages) |
 
----
+Interestingly, the substitution **I143V** evolved independently in four separate clades. Structural modeling predicted that this mutation slightly stabilized the transmembrane helix surrounding the catalytic center (ΔΔG = −0.74 kcal/mol), potentially improving electron transport efficiency under hypoxic conditions.
+
+Convergence analysis identified significantly more repeated amino acid substitutions among high-altitude taxa than expected by chance (permutation test, **P < 0.001**). Most convergent changes occurred in highly conserved regions of the protein, indicating adaptive rather than neutral evolution.
+
+Together, these findings support the hypothesis that **COX3** has repeatedly experienced positive selection during adaptation to high-altitude environments. Because mitochondrial respiration is fundamental to aerobic metabolism, repeated modification of COX3 may represent one molecular mechanism enabling efficient ATP production under chronic hypoxia.
+
+Although only a single mitochondrial gene was examined, this study demonstrates how comparative genomics can identify repeated adaptive evolution across distantly related species. Future work incorporating additional OXPHOS genes, larger taxonomic sampling, and functional biochemical assays would help determine whether convergent positive selection acts across the entire respiratory pathway.
 
 **Table 2.** Summary of likelihood ratio tests.
 
