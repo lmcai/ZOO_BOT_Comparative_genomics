@@ -31,7 +31,7 @@ Describe the results from the above analyses and your interpretation.
 
 For tables and figures, make sure you have captions. In a GitHub markdown file, you can add tables like this:
 ```
-Table 1 Test table caption
+**Table 1** Test table caption
 | Column 1 | Column 2 | Column 3 |
 |----------|----------|----------|
 | A        | B        | C        |
@@ -39,7 +39,7 @@ Table 1 Test table caption
 ```
 which will look like this:
 
-Table 1 Test table caption
+**Table 1** Test table caption
 
 | Column 1 | Column 2 | Column 3 |
 |----------|----------|----------|
@@ -50,8 +50,8 @@ You can add figures like this:
 ```
 ![Alt text for figure](mics/test.png)
 
-Figure 1. Test figure caption
+**Figure 1** Test figure caption
 ```
 ![Alt text for figure](mics/test.png)
 
-Figure 1. Test figure caption
+**Figure 1** Test figure caption
