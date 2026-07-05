@@ -8,11 +8,11 @@ _______________________________
 
 The title should be succinct and informative. What is the organism you are working with? What hypothesis do you want to test? What conclusion have you reached?
 
-## Introduction (maximum 200 words)
+## I. Introduction (maximum 200 words)
 
 Frame your question and connect it with the literature. Why is this question important? How would you address the knowledge gap? Why is this an appropriate system to address this question? 
 
-## Methods (unlimited words)
+## II/ Methods (unlimited words)
 
 Clearly describe your data source and analyses here. When describing an analysis, consider including the following components: 
 
@@ -25,7 +25,7 @@ Clearly describe your data source and analyses here. When describing an analysis
 software input > output
 ```
 
-## Results and discussion (maximum 500 words)
+## III. Results and discussion (maximum 500 words)
 
 Describe the results from the above analyses and your interpretation. 
 
