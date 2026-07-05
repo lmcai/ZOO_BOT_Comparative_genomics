@@ -4,7 +4,7 @@ This is a guideline for writing your GitHub summary page for your final project.
 
 _______________________________
 
-## Title of the project
+# Title of the project
 
 The title should be succinct and informative. What is the organism you are working with? What hypothesis do you want to test? What conclusion have you reached?
 
@@ -12,7 +12,7 @@ The title should be succinct and informative. What is the organism you are worki
 
 Frame your question and connect it with the literature. Why is this question important? How would you address the knowledge gap? Why is this an appropriate system to address this question? 
 
-## II/ Methods (unlimited words)
+## II. Methods (unlimited words)
 
 Clearly describe your data source and analyses here. When describing an analysis, consider including the following components: 
 
@@ -57,3 +57,17 @@ which will look like this:
 ![Alt text for figure](misc/test.png)
 
 **Figure 1** Test figure caption
+
+## Reference
+
+Cite at least 10 references throughout the summary. 
+
+When do you need to cite?
+
+- Introducing what others did in the past
+
+- Citing a method/software
+
+- Comparing your results to others
+
+- Many more
