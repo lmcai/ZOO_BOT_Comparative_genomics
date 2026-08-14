@@ -13,3 +13,5 @@ Use the following alignment `.fas` to build a phylogeny using IQ-TREE. Submit th
 5. View the *.treefile in FigTree. What is the ultrafast bootstrap support value for the common ancestor of ## and ## (1 pt)?
 
 6. Given the following species tree, how would you use gene duplication and loss to explain this gene tree you get (1 pt)?
+
+e.g., this gene tree can be explained by a gene duplication in the common ancestor of x and y, and gene losses in the common ancestor of z and w. Describe the precise nodes where the duplication and loss events occurred to get full credit.
