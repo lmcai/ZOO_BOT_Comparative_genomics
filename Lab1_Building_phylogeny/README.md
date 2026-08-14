@@ -1,4 +1,4 @@
-# Building phylogeny using Maximum Likelihood in IQ-TREE
+# Building phylogeny using Maximum Likelihood Methods in IQ-TREE
 
 ## 1. Overview
 
