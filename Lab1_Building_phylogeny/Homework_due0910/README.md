@@ -1,4 +1,4 @@
-# Lab 1 homework
+# Lab 1 homework: evolution of phytochrome in angiosperms
 
 Use the following alignment `.fas` to build a phylogeny using IQ-TREE. Submit the phylogeny and log file. Answer the following questions.
 
