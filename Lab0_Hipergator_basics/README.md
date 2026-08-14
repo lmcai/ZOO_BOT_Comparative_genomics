@@ -115,43 +115,24 @@ You can edit the file as you like. On a mac, ctrl-X closes it. Type 'Y' and then
 
 [For advanced users], learn [vim](https://github.com/iggredible/Learn-Vim). It's worth it. 
 
-## 8. File types in phylogenetics/phylogenomics, and some practice
-### Nexus - very common (used in PAUP, MrBayes, etc.)
+## 8. Below is a primer for lab 1, focusing on the file types you will see in phylogenetics
+### Fasta - very common format to store DNA/protein sequences
 First let's practice using the `cp`, or copy, command, to move some files from the shared area in our course directory to your personal directory. By using the copy command, you just create a copy in your directory rather than moving the file; in this way, it remains accessible to everyone else in the class (you all have access to the shared folder).
 
-First, check on where you are with `pwd`, and then move to your /blue/bot6276/<user>/Lab1 directory using `cd`.
+First, check where you are with `pwd`, and then move to your ``/blue/bot6276/<user>/Lab0` directory using `cd`.
 
 Next, type the following:
 ```
-cp ../../share/Lab1files/primates.nex .
-cp ../../share/Lab1files/primates.phy .
+cp ../../share/Lab1files/primates.fasta .
 cp ../../share/Lab1files/primates.tre .
 ```
 What did we just do? Remember that `..` is the directory immediately above you; in this case we needed to go back two directories from your Lab1 directory; first, to your user directory, and then to the one above that, the bot6276 directory. We told the server to go back two, then forward into the /share/Lab1files directory. In there it finds these three files, and we tell it to copy them each to `.`, which if you recall, is the place where you currently are. Ask Emily if this does not make sense! This is basic movement around on the server (or inside any computer), so make sure you are comfortable with this now.
 
-Next, use `nano` to view the primates.nex file. Note that the file is composed of "blocks"; each block starts with the words `begin <block type>;` and somewhere later (sometimes many lines later), each block ends with `end;`. Also note that every single individual line ends with `;`. 
-
-Use the skills you learned in the lab above, including `grep`, to answer the questions below.
-
-1. How many taxa are in primates.nex and how can you tell without counting the lines in the matrix? How many characters are in the matrix?
-
-2. How many times does the sequence motif "ACCTCGCTCCAAT" appear in primates.nex?  
-
-3. Which species have the same sequence motif, "ACCTCGCTCCAAT",  in the alignment?  
-
-
-### The remaining are optional things to try if you want to
+Next, use `nano` to view the `primates.fasta` file. Note that the file is composed of a header, starting with `>`, then sequences.
 
 ### Newick - a commonly used tree format
 To look at a phylogenetic tree, a commonly used piece of software is FigTree. Look it up and download it to your laptop.
 
 Download the file [primates.tre](Data/primates.tre) to your laptop. Open the file in FigTree, and play with the options in the left sidebar. You can use the File > Export Trees... function to export the file in Nexus (or Newick) format, though the original file is already in Newick format. Note that in order for Figree to open files, they usually need to end with `.tre`.
 
-Now open the original file in BBEdit. Use the graphical representation in Figtree and the text version in TextWrangler (both derived from the Newick-formatted file) to answer these questions:
-
-4. How long is the branch that subtends the clade including Homo_sapiens, Pan, and Gorilla?
-
-5. What is the appropriate section of Newick code (meaning, the notation using parentheses) that defines this clade? You can either find it and copy it out of the Newick file, or try to write it yourself by looking at the figure.
-
-### Phylip - used with RAxML, among other things
-Download the [primates.phy](Data/primates.phy) file to your laptop, and open it with BBEdit. Notice the differences between this and the Nexus file. 
+Now open the original file in BBEdit. Do you notice the `()` and `,`? These are how computers store topological information of a phylogeny.
