@@ -10,11 +10,11 @@ The walk-through below allows you to perform the analysis **locally on your lapt
 
 FigTree and AliView are tools to view phylogeny and alignments. It can be downloaded and installed easily using the following links:
 
-FigTree: https://github.com/rambaut/figtree/releases
+a. FigTree: https://github.com/rambaut/figtree/releases
 
-AliView: https://www.ormbunkar.se/aliview/downloads/
+b. AliView: https://www.ormbunkar.se/aliview/downloads/
 
-IQTREE can be downloaded and installed from [website](https://iqtree.github.io/#download) or if you have conda installed:
+c. IQTREE can be downloaded and installed from [website](https://iqtree.github.io/#download) or if you have conda installed:
 ```
 conda install bioconda::iqtree
 ``` 
