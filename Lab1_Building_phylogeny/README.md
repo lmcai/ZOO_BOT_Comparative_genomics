@@ -76,7 +76,7 @@ ANS: Alignment has 12 sequences with 898 sites. 367 parsimony-informative, 154 s
 ```
 b. If no models are specified by `-m`, IQ-TREE performs ModelFinder. What does ModelFinder do? Comparing the scores between `JC+I+R3` and `F81+F+I+G4` from the log file, which model is better? Why? How is the best model selected (what are AIC, AICc, and BIC criteria)? 
 ```
-ANS: ModelFinder tries to identify the best-fitting subsitution model. To compare `JC+I+R3` and `F81+F+I+G4`, locate their coresponding lines:
+ANS: ModelFinder tries to identify the best-fitting subsitution model. To compare JC+I+R3 and F81+F+I+G4, locate their coresponding lines:
 
 No. Model         -LnL         df  AIC          AICc         BIC
 15  JC+I+R3       6266.414     26  12584.828    12586.440    12709.632
@@ -109,7 +109,9 @@ rAG=rCT(transitions share one rate)
 rAC=rAT!=rCG=rGT
 ```
 
-4. View `primates.fasta.treefile` in FigTree or other tree viewing program. Is it rooted, how would you root it?
+4. View `primates.fasta.treefile` in FigTree or other tree viewing program. Is it rooted? Based on the following primate species tree, how would you root it?
+
+![primate](./primate_phylogeny.jpg)
 ```
 ANS: see demonstration in class
 ```
