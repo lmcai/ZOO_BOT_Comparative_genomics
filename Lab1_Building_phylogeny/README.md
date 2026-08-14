@@ -122,7 +122,7 @@ ANS: 97
 ```
 e. Display the branch length. What's the branch length for the common ancestor of Homo_sapiens and Pongo?
 ```
-ANS: 97
+ANS: 0.048
 ```
 f. How to highlight certain clades?
 ```
