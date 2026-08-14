@@ -2,15 +2,15 @@
 
 ## 1. Prior to this lab you should have done the following:
 
-1. Obtained a Hipergator account and tested that you can login
+1. Obtained a Hipergator account and tested that you can log in (see logging instructions below)
 2. Installed the following software on your laptop:
-    + Terminal (Mac) or PC equivalent (e.g., XTerm)
-    + Cyberduck (Mac) or PC equivalent (e.g., Putty) [I personally prefer to use the sftp command instead.]
-    + BBEdit (Mac) or PC equivalent (e.g., Notepad)
+    + Terminal (Mac) or Windows Terminal (PC)
+    + Cyberduck (Mac) or PuTTY (PC) for file transfer [I personally prefer to use the sftp command instead.]
+    + BBEdit (Mac) or Notepad (PC) for editing files
 3. Configured Cyberduck (or equivalent) to work with Hipergator
 4. Downloaded the file [dummy.txt](Data/dummy.txt) to your laptop
 
-## 2. Getting onto the server
+## 2. Logging onto the server
 
 Open Terminal or PC equivalent. At the prompt (the prompt is the $; you do not enter this, it just appears), type the command below, where `<user>` is your username. 
 
@@ -41,8 +41,8 @@ cd /blue/bot6276/<user>
 ## 3. Basic useful unix commands
 Once you are on the server, there are a number of helpful commands that you should memorize, and will find yourself using frequently. These are demonstrated in the code below, which has comments indicated with  #.
 ```
-mkdir Lab1  #this command will create a new directory (folder) called Lab1
-cd Lab1  #this will move you into the Lab1 directory
+mkdir Lab0  #this command will create a new directory (folder) called Lab1
+cd Lab0  #this will move you into the Lab1 directory
 cd ..  #the directory above where you currently are is called .. and this will move you back to it
 ls  #this will display a list of the current directory's contents
 ls -l  #this displays the directory content list with additional information
@@ -115,7 +115,7 @@ You can edit the file as you like. On a mac, ctrl-X closes it. Type 'Y' and then
 
 [For advanced users], learn [vim](https://github.com/iggredible/Learn-Vim). It's worth it. 
 
-## 8. Filetypes in phylogenetics/phylogenomics, and some practice
+## 8. File types in phylogenetics/phylogenomics, and some practice
 ### Nexus - very common (used in PAUP, MrBayes, etc.)
 First let's practice using the `cp`, or copy, command, to move some files from the shared area in our course directory to your personal directory. By using the copy command, you just create a copy in your directory rather than moving the file; in this way, it remains accessible to everyone else in the class (you all have access to the shared folder).
 
