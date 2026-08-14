@@ -1,14 +1,20 @@
 # Building phylogeny using Maximum Likelihood in IQ-TREE
 
-## 1. Software we'll cover in lab today:
+## 1. Overview
 
-IQ-TREE [website](https://iqtree.github.io/)
+We will work with IQ-TREE [website](https://iqtree.github.io/) for this lab. The lab focuses on phylogeny inference and interpretation.
 
 The walk-through below allows you to perform the analysis **locally on your laptop**. If you have a HiperGator account, you can submit a slurm job to run IQ-TREE and generate the phylogeny we needed for today (**see tutorial at the bottom**). If you cannot run it on your computer or HiperGator, you can look at the outputs in the output folders.
 
-## 2. Pre-class preparation: Installing IQ-TREE on your computer or learn how to load it on HiperGator if you have an account
+## 2. Pre-class preparation: Install IQ-TREE, FigTree, and AliView on your computer
 
-Download and install from IQTREE [website](https://iqtree.github.io/#download) or if you have conda installed:
+FigTree and AliView are tools to view phylogeny and alignments. It can be downloaded and installed easily using the following links:
+
+FigTree: https://github.com/rambaut/figtree/releases
+
+AliView: https://www.ormbunkar.se/aliview/downloads/
+
+IQTREE can be downloaded and installed from [website](https://iqtree.github.io/#download) or if you have conda installed:
 ```
 conda install bioconda::iqtree
 ``` 
@@ -40,16 +46,16 @@ Once you understand the flags in the command line and what they're doing, you're
 IQ-TREE is a standard tool for ML analyses in phylogenetics. The most recent versions allow you to perform bootstrap analysis (to statistically assess confidence levels of branch reconstruction) and search for the best-scoring ML tree in a single run. It can handle substantial datasets with thousands of loci, but we will work with a small primates dataset, which is typically used as an example in courses like this, to keep things fast. IQ-TREE takes FASTA or phylip formatted files for the alignment. You'll need to get the following files into your working folder: 
 ```
 primates.fasta
-primates_constraint.tre
-primates_partition
 ```
 
-Scroll further down in the help until you find the `MODEL-FINDER` section. But you can specify a subset to be included, such as `-m GTR`, which will only explore `GTR`, `GTR+F`, `GTR+I+F`, `GTR+I+F+G2`, etc.
-
- 
-1. Perform a default run of IQ-TREE using only the minimum input. The default behaviour of IQ-TREE will run model test among all models available. Make sure you `cd` into the correct working directory where `primates.fasta` is located.
+1. Use AliView to view `primates.fasta`. How many sequences there are? What is the length of each sequence? Are all sequence length equal?
 ```
-iqtree3 -s primates.fasta
+See demonstration in class
+```
+
+2. Perform IQ-TREE analysis using the following input with `-B 1000` for ultrafast bootstrap of evaluate branch support. The default behaviour of IQ-TREE will take in the input alignment, run model test to identify the best substitution model, then perform 1000 ultrafast bootstrap to assess branch support. Make sure you `cd` into the correct working directory where `primates.fasta` is located.
+```
+iqtree3 -s primates.fasta -B 1000
 ```
 
 Once your analysis has completed, you'll have a bunch of output files to look at. This is what the outputs are:
@@ -62,13 +68,13 @@ Once your analysis has completed, you'll have a bunch of output files to look at
 - primates.fasta.ckp.gz			#check point file if you need to resume the run
 ```
 
-2. Look at `primates.fasta.log`, look for the following information
+3. Look at `primates.fasta.log`, look for the following information
 
 a. How many taxa and characters are in this fasta file? How many of them are parsimony-informative? How many singleton?
 ```
 ANS: Alignment has 12 sequences with 898 sites. 367 parsimony-informative, 154 singleton sites.
 ```
-b. If no models are specified by `-m`, IQ-TREE performs ModelFinder. What does ModelFinder do? Comparing the scores between `JC+I+R3` and `F81+F+I+G4` from the log file, which model is better? Why? What is the best model selected under the AIC, AICc, and BIC criteria? Why are they different?
+b. If no models are specified by `-m`, IQ-TREE performs ModelFinder. What does ModelFinder do? Comparing the scores between `JC+I+R3` and `F81+F+I+G4` from the log file, which model is better? Why? How is the best model selected (what are AIC, AICc, and BIC criteria)? 
 ```
 ANS: ModelFinder tries to identify the best-fitting subsitution model. To compare `JC+I+R3` and `F81+F+I+G4`, locate their coresponding lines:
 
@@ -87,11 +93,9 @@ Bayesian Information Criterion:         TPM2u+F+G4
 
 They are different because of how free parameters are penalized, with BIC penalize strongly on the number of free parameters.
 ```
-d. What does `NNI` mean? What is IQ-TREE doing when it says `Optimizing NNI: ...`?
+c. Notice that IQ-TREE says `Optimizing NNI: ...`. This is how IQ-TREE changes a small proportion of the topology to explore the tree space and identify better fitting trees.
 
-ANS: `NNI` is a tree topology refining algorithm. IQ-TREE alternates tree tologies around the current tree to explore tree space and identify better fitting trees.
-
-e. What's the final optimal likelihood? What's the inferred rate parameters? Why are some of them equal to each other?
+d. What's the final optimal likelihood? What's the inferred rate parameters? Why are some of them equal to each other?
 
 ANS: 
 ```
@@ -105,64 +109,35 @@ rAG=rCT(transitions share one rate)
 rAC=rAT!=rCG=rGT
 ```
 
-f. View `primates.fasta.treefile` in FigTree or other tree viewing program. Is this a rooted or unrooted tree?
-
-ANS: unrooted
-
-3. We will run IQ-TREE again by adding `-nt 2` to use 2 threads to speed up the program. `-B 1000` to use ultrafast bootstrap to evaluate branch support, and `-p primates_partition`.
-
-The `-p` flag introduces a data partition. It uses the exact same input file, but how includes a flag to an input script that divides the alignment into partitions based on whether they are coding or non-coding. You'll probably want to partition your data files at some point, so it's very useful to know how to do this. 
-
+4. View `primates.fasta.treefile` in FigTree or other tree viewing program. Is it rooted, how would you root it?
 ```
-iqtree3 -s primates.fasta -p primates_partition -B 1000 -nt 2
+ANS: see demonstration in class
 ```
-a. Open the partition info file `primates_partition`, what's the name and range of each partition?
 
-b. Now look at the log file `primates_partition.log`. What's the final optimal likelihood? How does it compare to the previous run?
-
-ANS: best likelihood score= -5899.779. It is lower than previous run, but it does not necessarily mean the tree is worse. We have included more parameters this time because of data partition, the likelihood is expected to drop a little.
-
-c. Look at the `primates_partition.best_model.nex` file. This file contains the best partition model inferred from the data, and rate parameters for each individual partition. What is the best model for each partition? Why is the rate different (read the [tutorial](https://iqtree.github.io/doc/Advanced-Tutorial#partitioned-analysis-for-multi-gene-alignments) and think about the difference between `-p`, `-q`, and `-Q`)? More specifically, how does the rate between coding and non-coding regions differ from each other?
-
-ANS: GTR for both partitions. the non-coding rate is higher as expected (GTR{15.122,45.6549,9.10676,9.82992,98.3016} for non-coding compared to GTR{6.79421,22.3723,4.10071,1.78118,22.4811} for coding)
-
-d. View `primates.fasta.treefile` in FigTree or other tree viewing program. Display the node labels. What's the ultrafast support value for the common ancestor of Homo_sapiens and Pongo?
-
+e. Display the node labels. What's the ultrafast support value for the common ancestor of Homo_sapiens and Pongo?
+```
 ANS: 97
-
-e. What command would you use if you want to run non-parametric bootstrap?
-
-ANS: `-b 100` for 100 non-parametric bootstrap
-
-4. We can also constrain the topology of the phylogeny and only optimize the branch length. 
-
-This will force the trees searched to only be those that meet a criterion for backbone relationships. It is the `-g` flag that adds the constraint input file. Open the constraint file to see what it looks like. You can also open the constraint tree in FigTree and look at it. The way this constraint will work is that IQTREE will only consider trees that are compatible with this constraint. Notice that there is no structure within the three big clades, so those relationships are free to vary. We are enforcing two things, essentially: 1. the make-up of each of those three large clades (e.g., one clade must always include Homo, Pan, Gorilla together), and 2. the backbone relationships of those clades to one another and to the outgroup. This is a useful approach if you know something about how your tree should be shaped, and want to save time by not having IQTREE consider trees that aren't congruent with your prior knowledge.
-
-To do so, use the following commands
 ```
-iqtree3 -s primates.fasta -p primates_partition -B 1000 -nt 2 -g primates_constraint.tre
+e. Display the branch length. What's the branch length for the common ancestor of Homo_sapiens and Pongo?
 ```
-
-a. What is the best score from this tree? How does it compare to previous results? What is your explanation for the relative scores from the three jobs? Is this what you would have expected, and why?
-
-ANS: best score -6059.482 is lowest compared to prevous runs. The very short internal branches of the constraint search plus the lower likelihood score indicate that the constrained topology fit worse to the data.
-
-b. Check the support values of constrained nodes? Why are they all 100?
-
-ANS: becuase the relationship of the constrained nodes does not change during tree search, they are expected to occur 100% in the boostrap replicate trees.
-
-c. Do you notice super-short branches in the tree from the constrained search? Why could it be the case?
-
-ANS: see above.
-
-d. How different are the constrained and unconstrained versions of the output tree topologies? Was using the constraint necessary to get the "correct" relationships, based on our prior knowledge?
-
-ANS: the constrained relationship of monophyletic (Pongo,Hylobates,Tarsius_syrichta,Saimiri_sciureus), which includes Orangutans to Gibbons and Squirrel Monkey, is unrealistic.
+ANS: 97
+```
+f. How to highlight certain clades?
+```
+See demonstration in class.
+```
 
 ######################################################
 # If you have access to HiperGator
 
-Complete the same steps above on HiperGtor
+## Resources
+UFIT quick start https://docs.rc.ufl.edu/quickstart/introduction/
+
+HiPerGator User Training https://go.ufl.edu/hpg-training
+
+For any questions regarding UFIT, go to their help center: https://support.rc.ufl.edu/
+
+## Complete the same steps above on HiperGtor
 
 1. Log on to Hipergator 
 2. `cd` into your scratch directory
@@ -171,8 +146,8 @@ cd /blue/bot6276/<user>
 ```
 3. Make a new directory for IQTREE and go into it
 ```
-mkdir Lab2
-cd Lab2
+mkdir Lab1
+cd Lab1
 ```
 
 4. Upload all files from your computer to `/blue/bot6276/<user>/Lab2`. When you list the files under this folder, you should see this:
