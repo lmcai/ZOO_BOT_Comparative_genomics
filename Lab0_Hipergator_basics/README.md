@@ -33,7 +33,7 @@ pwd
 
 This is the location where we DON'T want to be. To get to the right place, enter the following:
 ```
-cd /blue/bot6276/<user>
+cd /blue/bot4935/<user>
 ```
 
 `pwd` is "present working directory" - this command will always give you your current location, i.e., the folder that you are working in at the moment. You can move around between directories easily, using `cd`, the command above where you moved from the home folder to the scratch folder (`cd` stands for "change directory").
@@ -58,9 +58,9 @@ In Cyberduck, navigate to the new Lab1 directory you created above, and drag "du
 
 ```
 $ pwd
-/blue/bot6276/share/<user>/Lab1
+/blue/bot4935/share/<user>/Lab1
 $ ls -l
--rw-rw-r--  1 <user> bot6276  214 Jan 25  2026 dummy.txt
+-rw-rw-r--  1 <user> bot4935  214 Jan 25  2026 dummy.txt
 ```
 
 Now we can practice a few more commands...
@@ -119,14 +119,14 @@ You can edit the file as you like. On a mac, ctrl-X closes it. Type 'Y' and then
 ### Fasta - very common format to store DNA/protein sequences
 First let's practice using the `cp`, or copy, command, to move some files from the shared area in our course directory to your personal directory. By using the copy command, you just create a copy in your directory rather than moving the file; in this way, it remains accessible to everyone else in the class (you all have access to the shared folder).
 
-First, check where you are with `pwd`, and then move to your ``/blue/bot6276/<user>/Lab0` directory using `cd`.
+First, check where you are with `pwd`, and then move to your ``/blue/bot4935/<user>/Lab0` directory using `cd`.
 
 Next, type the following:
 ```
 cp ../../share/Lab1files/primates.fasta .
 cp ../../share/Lab1files/primates.tre .
 ```
-What did we just do? Remember that `..` is the directory immediately above you; in this case we needed to go back two directories from your Lab1 directory; first, to your user directory, and then to the one above that, the bot6276 directory. We told the server to go back two, then forward into the /share/Lab1files directory. In there it finds these three files, and we tell it to copy them each to `.`, which if you recall, is the place where you currently are. Ask Emily if this does not make sense! This is basic movement around on the server (or inside any computer), so make sure you are comfortable with this now.
+What did we just do? Remember that `..` is the directory immediately above you; in this case we needed to go back two directories from your Lab1 directory; first, to your user directory, and then to the one above that, the bot4935 directory. We told the server to go back two, then forward into the /share/Lab1files directory. In there it finds these three files, and we tell it to copy them each to `.`, which if you recall, is the place where you currently are. Ask Emily if this does not make sense! This is basic movement around on the server (or inside any computer), so make sure you are comfortable with this now.
 
 Next, use `nano` to view the `primates.fasta` file. Note that the file is composed of a header, starting with `>`, then sequences.
 
