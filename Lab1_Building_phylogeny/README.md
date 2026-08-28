@@ -144,7 +144,7 @@ For any questions regarding UFIT, go to their help center: https://support.rc.uf
 1. Log on to Hipergator 
 2. `cd` into your scratch directory
 ```
-cd /blue/bot6276/<user>
+cd /blue/bot4935/<user>
 ```
 3. Make a new directory for IQTREE and go into it
 ```
@@ -152,12 +152,11 @@ mkdir Lab1
 cd Lab1
 ```
 
-4. Upload all files from your computer to `/blue/bot6276/<user>/Lab2`. When you list the files under this folder, you should see this:
+4. Upload all files from your computer to `/blue/bot4935/<user>/Lab1`. When you list the files under this folder, you should see this:
 ```
-$ls /blue/bot6276/<user>/Lab2
-primates_constraint.tre
-primates_partition
+$ls /blue/bot4935/<user>/Lab1
 primates.fasta
+primates_partition
 iqtree.sh
 ```
 
@@ -167,8 +166,8 @@ When you first open a submission script, you'll want to change a few things righ
 
 ```
 #!/bin/sh
-#SBATCH --account=bot6276  #group name with which you are affiliated and resource will be used
-#SBATCH --qos=bot6276
+#SBATCH --account=bot4935  #group name with which you are affiliated and resource will be used
+#SBATCH --qos=bot4935
 #SBATCH --job-name=IQTREE   #Job name  
 #SBATCH --cpus-per-task=1   # Number of cores: Can also use -c=4 
 #SBATCH --mem-per-cpu=4gb   # Per processor memory limit
@@ -192,7 +191,7 @@ echo There are $SLURM_CPUS_ON_NODE cores available.
 ```
 The next line tells the server to load the appropriate modules for the software and analyses that you want to run. In our current case, there's only one:
 ```
-module load gcc/14.2.0 openmpi/5.0.7 iq-tree/3.0.1
+module load gcc/14.2.0  openmpi/5.0.7  iq-tree/3.1.3
 ```
 There are hundreds of programs installed on the server, and it would be overwhelming for it to keep them constantly "on call". Instead, you call up the individual modules you want for the analysis you're going to run, using this `module load <module name>` command.
 
