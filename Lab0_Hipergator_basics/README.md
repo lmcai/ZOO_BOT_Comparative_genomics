@@ -41,8 +41,8 @@ cd /blue/bot4935/<user>
 ## 3. Basic useful unix commands
 Once you are on the server, there are a number of helpful commands that you should memorize, and will find yourself using frequently. These are demonstrated in the code below, which has comments indicated with  #.
 ```
-mkdir Lab0  #this command will create a new directory (folder) called Lab1
-cd Lab0  #this will move you into the Lab1 directory
+mkdir Lab0  #this command will create a new directory (folder) called Lab0
+cd Lab0  #this will move you into the Lab0 directory
 cd ..  #the directory above where you currently are is called .. and this will move you back to it
 ls  #this will display a list of the current directory's contents
 ls -l  #this displays the directory content list with additional information
@@ -54,11 +54,11 @@ There are many ways to move files between your local machine and the server; the
 
 One useful modification to make to Cyberduck's setup is to make it such that if you double click a file name, it will open that file using your preferred text editing software, directly on the server. The default is to have double clicking download the file, which gets really annoying and cumbersome. To change this, do the following: Select Preferences from the Cyberduck menu, and select Editor. Choose your editor of choice from the dropdown menu, and hit the button for "always...". Now choose the Browser menu option, and check the box next to "Double click opens file in external editor". You're all set!
 
-In Cyberduck, navigate to the new Lab1 directory you created above, and drag "dummy.txt" from wherever it is on your laptop to that directory. It should transfer automatically. Going back to terminal, you can check to be sure that the file shows up. First use `pwd` to be sure you're in your Lab 1 folder, and then use `ls -l` to show you the list of files in that folder. You should see something like this:
+In Cyberduck, navigate to the new Lab0 directory you created above, and drag `dummy.txt` from wherever it is on your laptop to that directory. It should transfer automatically. Going back to terminal, you can check to be sure that the file shows up. First use `pwd` to be sure you're in your Lab 0 folder, and then use `ls -l` to show you the list of files in that folder. You should see something like this:
 
 ```
 $ pwd
-/blue/bot4935/share/<user>/Lab1
+/blue/bot4935/<user>/Lab0
 $ ls -l
 -rw-rw-r--  1 <user> bot4935  214 Jan 25  2026 dummy.txt
 ```
@@ -123,10 +123,10 @@ First, check where you are with `pwd`, and then move to your ``/blue/bot4935/<us
 
 Next, type the following:
 ```
-cp ../../share/Lab1files/primates.fasta .
-cp ../../share/Lab1files/primates.tre .
+cp ../../share/Lab1/primates.fasta .
+cp ../../share/Lab1/primates.tre .
 ```
-What did we just do? Remember that `..` is the directory immediately above you; in this case we needed to go back two directories from your Lab1 directory; first, to your user directory, and then to the one above that, the bot4935 directory. We told the server to go back two, then forward into the /share/Lab1files directory. In there it finds these three files, and we tell it to copy them each to `.`, which if you recall, is the place where you currently are. Ask Emily if this does not make sense! This is basic movement around on the server (or inside any computer), so make sure you are comfortable with this now.
+What did we just do? Remember that `..` is the directory immediately above you; in this case we needed to go back two directories from your Lab1 directory; first, to your user directory, and then to the one above that, the bot4935 directory. We told the server to go back two, then forward into the `/share/Lab1` directory. In there it finds these three files, and we tell it to copy them each to `.`, which if you recall, is the place where you currently are. Ask Emily if this does not make sense! This is basic movement around on the server (or inside any computer), so make sure you are comfortable with this now.
 
 Next, use `nano` to view the `primates.fasta` file. Note that the file is composed of a header, starting with `>`, then sequences.
 
