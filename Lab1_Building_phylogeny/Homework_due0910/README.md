@@ -1,6 +1,13 @@
 # Lab 1 homework: evolution of phytochrome in angiosperms
 
-Use the following alignment `.fas` to build a phylogeny using IQ-TREE. Submit the phylogeny and log file. Answer the following questions.
+## What to include for the submission?
+1. The resulting phylogeny
+2. The IQ-TREE log file.
+3. A word/text file to answer the following questions.
+
+Zip the above documents into a single file, submit through the Canvas assignment page.
+
+Build a phylogeny based on the alignment `phyA_phyC.fas` using IQ-TREE. Answer the following questions:
 
 1. View the alignment in AliView, how many sequences are there and what is the length of the alignment (1 pt)?
 
