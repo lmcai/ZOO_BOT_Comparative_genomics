@@ -6,6 +6,7 @@
 3. A word/text file to answer the following questions.
 
 Zip the above documents into a single file, submit through the Canvas assignment page.
+---------------------
 
 Build a phylogeny based on the alignment `phyA_phyC.fas` using IQ-TREE. Answer the following questions:
 
