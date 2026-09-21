@@ -48,7 +48,7 @@ Here we have:
 ```
 Mx_aln.phy       # the codon alignment, PHYLIP format
 Mx_unroot.tree   # unrooted gene tree, Newick format
-Mx_root.tree     # rooted gene tree, Newick format
+Mx_branch_duckchicken.tree     # rooted and labeled gene tree, Newick format
 ```
 The alignment file `Mx_aln.phy` is in PHYLIP format. View it in a text editor. The first line is a header:
 ```
@@ -89,8 +89,8 @@ Each `#1` you add corresponds to one additional $\omega$ class that `CODEML` wil
 | Model family | Varies across | `model` | `NSsites` | Question it answers |
 |---|---|---|---|---|
 | Homogeneous (M0) | None| `0` | `0` | Is the gene, on average, under selection? |
-| Site models | codon sites | `0` | `0 1 2 7 8` | Do a subset of *sites* show $\omega > 1$? |
 | Branch models | branches (lineages) | `2` | `0` | Do specific *lineages* show a different $\omega$ than the rest of the tree? |
+| Site models | codon sites | `0` | `0 1 2 7 8` | Do a subset of *sites* show $\omega > 1$? |
 | Branch-site models | sites *within* specific branches | `2` | `2` | Do specific *sites*, but only along specific *foreground lineages*, show $\omega > 1$? |
 
 a. Homogeneous model (M0): every site and every branch in the tree shares the same $\omega$. It's rarely biologically realistic, but it serves as our null hypothesis here.
