@@ -84,7 +84,7 @@ Each `#1` you add corresponds to one additional $\omega$ class that `CODEML` wil
 
 ## 2. What the four model classes assume
 
-All of these are fit with the same program, `CODEML`, but they distribute the assumption of where $\omega$ can vary very differently. Two control-file variables do the real work: `model` (variation across **branches**) and `NSsites` (variation across **sites**).
+`CODEML` incorporates a variety of models where $\omega$ can vary very differently. Two control-file variables do the real work: `model` (variation across **branches**) and `NSsites` (variation across **sites**).
 
 | Model family | Varies across | `model` | `NSsites` | Question it answers |
 |---|---|---|---|---|
