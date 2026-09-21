@@ -89,42 +89,39 @@ Each `#1` you add corresponds to one additional $\omega$ class that `CODEML` wil
 | Model family | Varies across | `model` | `NSsites` | Question it answers |
 |---|---|---|---|---|
 | Homogeneous (M0) | None| `0` | `0` | Is the gene, on average, under selection? |
-| Site models | codon sites | `0` | `0 1 2 7 8` | Do a subset of *sites* show $\omega > 1$, regardless of lineage? |
+| Site models | codon sites | `0` | `0 1 2 7 8` | Do a subset of *sites* show $\omega > 1$? |
 | Branch models | branches (lineages) | `2` | `0` | Do specific *lineages* show a different $\omega$ than the rest of the tree? |
 | Branch-site models | sites *within* specific branches | `2` | `2` | Do specific *sites*, but only along specific *foreground lineages*, show $\omega > 1$? |
 
-### Homogeneous model (M0)
+a. Homogeneous model (M0): every site and every branch in the tree shares the same $\omega$. It's rarely biologically realistic, but it serves as our null hypothesis here.
 
-The simplest model: every site in the alignment and every branch in the tree shares the same $\omega$. It's rarely biologically realistic (it's implausible that literally every codon and every lineage is under identical selective pressure), but it is essential as a baseline: every other model is tested for whether it explains the data significantly better than this one.
+b. Branch models
 
-### Site models
+Branch models fix one $\omega$ per branch group, defined by the `#1` tags you place in the tree file. `model = 2` tells `CODEML` to look for those tags and estimate a separate $\omega$ for each labelled group. This tests whether a *specific lineage* (e.g., a dietary shift, a gene duplication, or a host jump) has an elevated $\omega$ relative to the rest of the tree.
 
-Site models let $\omega$ vary among codons by drawing it from a statistical distribution across site classes, but they still assume every branch in the tree shares that same distribution (no lineage-specific effects). Running `NSsites = 0 1 2 7 8` fits five models in a single `CODEML` call:
+c. Site models: $\omega$ vary among codons by drawing it from a statistical distribution across site classes, but they still assume every branch in the tree shares that same distribution (no lineage-specific effects). Running `NSsites = 0 1 2 7 8` fits five models in a single `CODEML` call:
 
-- **M0** — one $\omega$ for all sites (the homogeneous model, included here as the universal null).
+- **M0** — one $\omega$ for all sites.
 - **M1a (NearlyNeutral)** — two site classes: a proportion of sites with $0 < \omega_0 < 1$, and the remainder fixed at $\omega = 1$. No site class is allowed to exceed 1, so this model *cannot* detect positive selection by construction.
 - **M2a (PositiveSelection)** — adds a third site class to M1a where $\omega_2$ is estimated freely and can exceed 1. Comparing M1a vs. M2a is the classic test for whether any sites are under positive selection.
 - **M7 (beta)** — $\omega$ across sites follows a beta distribution bounded between 0 and 1 (approximated with 10 discrete site classes), so again no site can have $\omega > 1$.
 - **M8 (beta&$\omega$)** — M7 plus one additional free site class that can have $\omega > 1$. Comparing M7 vs. M8 is a second, independent test for positive selection at specific sites, useful when the M1a/M2a comparison gives an ambiguous result.
 
-### Branch models
 
-Branch models fix a single $\omega$ per site class but let that value differ among groups of branches, defined by the `#1` tags you place in the tree file (Section 4). `model = 2` tells `CODEML` to look for those tags and estimate a separate $\omega$ for each labelled group, versus one shared $\omega$ for all unlabelled ("background") branches. This tests whether a *specific lineage* — for example, a branch following a dietary shift, a gene duplication, or a host jump — has an elevated $\omega$ relative to the rest of the tree, but it still assumes that whole lineage's average $\omega$ is representative (it can't isolate individual sites within that branch).
+d. Branch-site models
 
-### Branch-site models
-
-Branch-site model A is the most flexible of the four: it allows $\omega$ to vary across sites *and* restricts the possibility of $\omega>1$ to specific, user-labelled foreground branches. Concretely, it has four site classes:
+It allows $\omega$ to vary across sites *and* restricts the possibility of $\omega>1$ to specific, user-labelled foreground branches. It has four site classes:
 
 - class 0: $\omega_0 < 1$ on both background and foreground branches (purifying, everywhere);
 - class 1: $\omega = 1$ on both background and foreground branches (neutral, everywhere);
 - class 2a: $\omega_0$ on background branches, but a freely estimated $\omega_2$ (possibly $>1$) on foreground branches;
 - class 2b: $\omega = 1$ on background branches, but that same free $\omega_2$ on foreground branches.
 
-In other words, it asks: *are there codons that were under purifying or neutral selection across most of the tree, but shifted to positive selection specifically along the branch(es) I've tagged?* This is the model used to test things like "did this gene experience an episode of adaptive evolution specifically in the bird lineage." It's set with `model = 2` and `NSsites = 2`.
+In other words, it asks: *are there codons that were under purifying or neutral selection across most of the tree, but shifted to positive selection specifically along the foreground branch(es)?* It's set with `model = 2` and `NSsites = 2`.
 
-Because branch-site model A is not nested against M0 or M1a/M2a in a simple way, it has its own purpose-built null model: the same model with $\omega$ for classes 2a/2b **fixed at 1** instead of estimated (`fix_omega = 1`, `omega = 1`). This null still allows the background/foreground split to exist, it just forbids the foreground $\omega$ from exceeding 1 — so the alternative and null differ by exactly one parameter, which is what a likelihood ratio test requires (Section 7).
+To set up a null model for the branch-site model, we simply fix the the same model with $\omega$ for class 2a at 1 instead of estimated (`fix_omega = 1`, `omega = 1`). This null still allows the background/foreground split to exist, it just forbids the foreground $\omega$ from exceeding 1.
 
-## 6. Building the control file
+## 3. Building the control file
 
 
 Set `seqtype = 1` in the control file to tell `CODEML` this is a codon alignment (as opposed to `2` for amino acids or `0` for nucleotides analysed without regard to codon structure).
@@ -153,14 +150,7 @@ Set `seqtype = 1` in the control file to tell `CODEML` this is a codon alignment
         omega = INITOME        * Initial or fixed omega
 ```
 
-Key parameters to understand (not just fill in):
-
-- **`seqtype = 1`** — codon-based analysis; required for all dN/dS work.
-- **`model`** — controls variation across *branches*: `0` = one $\omega$ for the whole tree, `1` = a free ratio on every single branch (very parameter-rich, rarely used), `2` = several ratios defined by the `#1` tags in your tree file.
-- **`NSsites`** — controls variation across *sites*; you can list several values (e.g. `0 1 2 7 8`) to fit multiple site models in one run.
-- **`CodonFreq`** — how codon equilibrium frequencies are calculated. Common choices are `0` (equal, 1/61 each), `1` (F1x4, from average nucleotide frequencies), `2` (F3x4, from nucleotide frequencies at each codon position), or `3` (F61, one free frequency per codon). The tutorial's template instead uses `CodonFreq = 7`, which specifies the FMutSel mutation-selection model of Yang & Nielsen (2008); paired with `estFreq = 0`, frequencies are taken from the observed data rather than estimated by maximum likelihood.
-- **`fix_omega` / `omega`** — whether $\omega$ is estimated (`fix_omega = 0`, with `omega` giving the starting value for the optimizer, e.g. `0.5`) or fixed at a specific value (`fix_omega = 1`, with `omega` giving that fixed value — this is exactly how you build a branch-site null model with $\omega$ pinned at 1).
-- **`clock = 0`** — no molecular clock assumed; branch lengths are free to vary, which is standard for dN/dS estimation (as opposed to divergence-time estimation with `MCMCtree`).
+See class demonstration for parameter explanation
 
 ### Settings for each model
 
@@ -259,11 +249,3 @@ If you have a HiperGator account, the same control files and commands above can 
    sbatch codeml.sh
    squeue -u <user>
    ```
-
-Resources: [UFIT quick start](https://docs.rc.ufl.edu/quickstart/introduction/) · [HiPerGator User Training](https://go.ufl.edu/hpg-training) · [UFIT support](https://support.rc.ufl.edu/)
-
-## References
-
-- Álvarez-Carretero S, Kapli P, Yang Z. 2023. Beginner's guide on the use of PAML to detect positive selection. *Mol Biol Evol* 40(4):msad041.
-- Yang Z. 2007. PAML 4: Phylogenetic analysis by maximum likelihood. *Mol Biol Evol* 24(8):1586–1591.
-- Data and code adapted from the [`paml-tutorial`](https://github.com/abacus-gene/paml-tutorial) repository (`positive-selection` directory).
