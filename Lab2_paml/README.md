@@ -164,7 +164,7 @@ See class demonstration for parameter explanation
 
 Everything else (`CodonFreq = 7`, `estFreq = 0`, `clock = 0`, `ndata = 1`) stays the same across all five.
 
-## 7. Running CODEML
+## 4. Running CODEML
 
 Once the control file is ready and sits in the same directory as (or points via relative path to) your alignment and tree files, run:
 
@@ -174,7 +174,7 @@ codeml your_control_file.ctl
 
 `CODEML` writes its results to the file named in `outfile`. For multi-model runs (e.g. the five site models at once), the output file contains one block per model, each reporting the log-likelihood (`lnL`), the number of free parameters (`np`), and the maximum-likelihood estimates of $\omega$ and any other model parameters.
 
-## 8. Likelihood ratio tests (LRT)
+## 5. Likelihood ratio tests (LRT)
 
 Every comparison in this lab follows the same logic: a **null model** (fewer free parameters, a special/restricted case) versus an **alternative model** (more free parameters, which contains the null as a special case — i.e. the models are *nested*). You cannot LRT-compare models that aren't nested in this way.
 
