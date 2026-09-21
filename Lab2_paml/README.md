@@ -1,12 +1,12 @@
 # Detecting Positive Selection with CODEML (PAML)
 
-## 1. Overview
+## I. Overview
 
 We will work with PAML [website](https://github.com/abacus-gene/paml) for this lab. The lab focuses on inferring dN and dS rates from sequence alignments and their interpretation.
 
 The walk-through below allows you to perform the analysis **locally on your laptop**. If you have a HiperGator account, you can submit a slurm job to run PAML/CODEML (**see tutorial at the bottom**). If you cannot run it on your computer or HiperGator, you can look at the outputs in the output folders.
 
-## 2. Pre-class preparation: Install PAML, FigTree, and AliView on your computer
+## II. Pre-class preparation: Install PAML, FigTree, and AliView on your computer
 
 We have covered FigTree and AliView previously. For PAML installation, it can be downloaded and installed from precompiled versions here [website](https://github.com/abacus-gene/paml#installation) or if you have conda installed:
 ```
@@ -25,24 +25,24 @@ error when opening file codeml.ctl
 tell me the full path-name of the file? 
 ```
 
-## 3. In-class exercise: Inferring dN, dS rates from sequence alignment with or without a reference tree
+## III. In-class exercise: Inferring dN, dS rates from sequence alignment 
 
 PAML is a package for maximum likelihood based evolutionary hypothesis testing. It contains many programs developed by Ziheng Yang's group including `CODEML` (for dN/dS rate), `evolver` for simulating phylogeny and sequences, and `MCMCtree` for divergence time estimation. We will be using `CODEML` to infer substitution rates under various scenarios.
 
-
-https://academic.oup.com/mbe/article/40/4/msad041/7140562?searchresult=1&login=false
+The data we used for today's in-class exercises come from this paper:
+[Álvarez-Carretero S, Kapli P, Yang Z. 2023. Beginner's guide on the use of PAML to detect positive selection, Mol Biol Evol, 40(4):msad041.](https://academic.oup.com/mbe/article/40/4/msad041/7140562?searchresult=1&login=false)
 
 Recall the interpretation of $\omega$:
 
-* $\omega > 1$ → positive (diversifying) selection — nonsynonymous changes are favored;
+* $\omega > 1$ → positive (Darwinian) selection — nonsynonymous changes are favored;
 * $\omega = 1$ → neutral evolution;
 * $\omega < 1$ → negative (purifying) selection — nonsynonymous changes are being removed.
 
 Because most codons in most genes are under some functional constraint, an $\omega$ averaged across an entire gene and an entire tree is almost always < 1, even for genes that experience strong positive selection at a handful of sites or along a handful of branches. The models below exist because a single, gene-wide, tree-wide $\omega$ is usually too blunt an instrument to detect that kind of localized selection.
 
-## 2. Example dataset
+### 1. Input dataset
 
-We will use the myxovirus resistance gene (`Mx`) alignment and tree from the [`positive-selection`](https://github.com/abacus-gene/paml-tutorial/tree/main/positive-selection) tutorial in the `paml-tutorial` GitHub repository, which accompanies Álvarez-Carretero et al. (2023), *"Beginner's guide on the use of PAML to detect positive selection"* (*Mol Biol Evol* 40(4):msad041). The sequences come from ten mammal species plus two birds (duck and chicken) used as an outgroup, originally analysed by Huo et al. (2007).
+We will use the myxovirus resistance gene (`Mx`) alignment and tree from ten mammal species plus two birds as an outgroup.
 
 You will be provided with:
 
@@ -51,18 +51,12 @@ Mx_aln.phy       # the codon alignment, PHYLIP format
 Mx_unroot.tree   # unrooted gene tree, Newick format
 Mx_root.tree     # rooted gene tree, Newick format
 ```
-
-You do not need to build these yourself — focus on understanding what's inside them.
-
-## 3. The alignment file: PHYLIP format
-
-Open `Mx_aln.phy` in a text editor. The first line is a header:
-
+The alignment file `Mx_aln.phy` is in PHYLIP format. Open it in a text editor. The first line is a header:
 ```
 12   1989
 ```
 
-This tells `CODEML` there are **12 sequences**, each **1989 nucleotides long**. Each subsequent line is a sequence name followed by its aligned sequence:
+This tells us there are **12 sequences**, each **1989 nucleotides long**. Each subsequent line is a sequence name followed by its aligned sequence:
 
 ```
 Rhesus_macaque_Mx      ATTGTAAAAGCTGATCCAGCT...
@@ -70,34 +64,15 @@ Orangutan_Mx           ATCGCAAAAGCTGATCCAGCT...
 ...
 ```
 
-A few things to check before you trust an alignment for codon-model analysis:
+We will then open it in AliVIew to double check all sequences are in the correct codon positions.
 
-- **The alignment length must be a multiple of 3.** `CODEML` reads it as codons (triplets), not individual nucleotides, so the alignment has to preserve the reading frame — it should have been built from a codon-aware aligner (e.g. aligning translated protein sequences, then mapping back to nucleotides), not a naive nucleotide aligner.
-- **Gaps (`-`) mark indels**, and stop codons should not appear in the middle of a sequence — both would break the codon model.
-- All sequences are padded to the same length (`1989` here) with gaps, even though the un-aligned gene lengths differ (compare `Chicken_Mx` and `Human_Mx` — the bird sequences use a different part of the alignment window).
-
-Set `seqtype = 1` in the control file to tell `CODEML` this is a codon alignment (as opposed to `2` for amino acids or `0` for nucleotides analysed without regard to codon structure).
-
-## 4. The phylogeny: Newick format and branch labels
-
-Look at `Mx_unroot.tree`:
+The other input is the phylogeny. For most CODEML analyses, Newick format with topology is sufficient. For most analyses we deliberately use the **unrooted** tree. This is because we cannot estimate the length of the two branches leading away from the root and only their sum is identifiable. So rooting the tree adds a parameter that the data cannot actually inform. Using an unrooted tree removes that redundant parameter. See `Mx_unroot.tree`:
 
 ```
 12  1
 ((((((Chimpanzee_Mx,Human_Mx),Orangutan_Mx),Rhesus_macaque_Mx),(((Sheep_Mx,Cow_Mx),Pig_Mx),Dog_Mx)),(Mouse_Mx,Rat_Mx)),Duck_Mx,Chicken_Mx);
 ```
-
-The header `12  1` means 12 taxa, 1 tree in the file. The tree itself is standard Newick notation — nested parentheses represent nodes, and taxon names must match the sequence names in the alignment **exactly**.
-
-### Rooted vs. unrooted
-
-Compare this to `Mx_root.tree`, where duck and chicken are grouped together as a single clade rather than left as a trifurcation at the base:
-
-```
-(...,(Duck_Mx,Chicken_Mx));
-```
-
-For most analyses we deliberately use the **unrooted** tree. The reason is identifiability: the two branch lengths leading away from the root of a rooted tree cannot be estimated separately from each other — only their sum is identifiable — so rooting the tree adds a parameter that the data cannot actually inform. Using an unrooted tree removes that redundant parameter. The one situation where you *need* the rooted tree is when your hypothesis is specifically about the branch leading to a clade that would otherwise be split across the root's two arms (see the "bird clade" example below).
+The header `12  1` means 12 taxa, 1 tree in the file. The tree itself is standard Newick notation, and taxon names must match the sequence names in the alignment **exactly**.
 
 ### Labelling branches for hypothesis testing
 
@@ -164,6 +139,9 @@ In other words, it asks: *are there codons that were under purifying or neutral 
 Because branch-site model A is not nested against M0 or M1a/M2a in a simple way, it has its own purpose-built null model: the same model with $\omega$ for classes 2a/2b **fixed at 1** instead of estimated (`fix_omega = 1`, `omega = 1`). This null still allows the background/foreground split to exist, it just forbids the foreground $\omega$ from exceeding 1 — so the alternative and null differ by exactly one parameter, which is what a likelihood ratio test requires (Section 7).
 
 ## 6. Building the control file
+
+
+Set `seqtype = 1` in the control file to tell `CODEML` this is a codon alignment (as opposed to `2` for amino acids or `0` for nucleotides analysed without regard to codon structure).
 
 `CODEML` reads all of its options from a single control file (conventionally named `codeml.ctl` or similar), rather than from command-line flags. A template looks like this:
 
