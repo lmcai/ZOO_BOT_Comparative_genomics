@@ -8,7 +8,7 @@ The walk-through below allows you to perform the analysis **locally on your lapt
 
 ## II. Pre-class preparation: Install PAML, FigTree, and AliView on your computer
 
-We have covered FigTree and AliView previously. For PAML installation, it can be downloaded and installed from precompiled versions here [website](https://github.com/abacus-gene/paml#installation) or if you have conda installed:
+We have covered FigTree and AliView previously. For PAML, it can be downloaded and installed from precompiled versions here [website](https://github.com/abacus-gene/paml#installation) or if you have conda installed:
 ```
 conda install bioconda::paml
 ``` 
@@ -38,24 +38,22 @@ Recall the interpretation of $\omega$:
 * $\omega = 1$ → neutral evolution;
 * $\omega < 1$ → negative (purifying) selection — nonsynonymous changes are being removed.
 
-Because most codons in most genes are under some functional constraint, an $\omega$ averaged across an entire gene and an entire tree is almost always < 1, even for genes that experience strong positive selection at a handful of sites or along a handful of branches. The models below exist because a single, gene-wide, tree-wide $\omega$ is usually too blunt an instrument to detect that kind of localized selection.
+Because most codons in most genes are under some functional constraint, an $\omega$ averaged across an entire gene and an entire tree is almost always < 1, even for genes that experience strong positive selection at a handful of sites or along a handful of branches. The models below were used to estimate $\omega$ for all sites in all branches, for all sites in two types of branches, and for multiple types of sites x branches.
 
 ### 1. Input dataset
 
 We will use the myxovirus resistance gene (`Mx`) alignment and tree from ten mammal species plus two birds as an outgroup.
 
-You will be provided with:
-
+Here we have:
 ```
 Mx_aln.phy       # the codon alignment, PHYLIP format
 Mx_unroot.tree   # unrooted gene tree, Newick format
 Mx_root.tree     # rooted gene tree, Newick format
 ```
-The alignment file `Mx_aln.phy` is in PHYLIP format. Open it in a text editor. The first line is a header:
+The alignment file `Mx_aln.phy` is in PHYLIP format. View it in a text editor. The first line is a header:
 ```
 12   1989
 ```
-
 This tells us there are **12 sequences**, each **1989 nucleotides long**. Each subsequent line is a sequence name followed by its aligned sequence:
 
 ```
@@ -66,7 +64,7 @@ Orangutan_Mx           ATCGCAAAAGCTGATCCAGCT...
 
 We will then open it in AliVIew to double check all sequences are in the correct codon positions.
 
-The other input is the phylogeny. For most CODEML analyses, Newick format with topology is sufficient. For most analyses we deliberately use the **unrooted** tree. This is because we cannot estimate the length of the two branches leading away from the root and only their sum is identifiable. So rooting the tree adds a parameter that the data cannot actually inform. Using an unrooted tree removes that redundant parameter. See `Mx_unroot.tree`:
+The other input is the phylogeny. For most CODEML analyses, Newick format with topology is sufficient. For most analyses we deliberately use the **unrooted** tree. This is because we cannot estimate the lengths of the two branches leading away from the root and only their sum is identifiable. So rooting the tree adds a parameter that the data cannot actually inform. Using an unrooted tree removes that redundant parameter. See `Mx_unroot.tree`:
 
 ```
 12  1
@@ -76,19 +74,7 @@ The header `12  1` means 12 taxa, 1 tree in the file. The tree itself is standar
 
 ### Labelling branches for hypothesis testing
 
-Branch and branch-site models require you to tell `CODEML` which branches you hypothesize experienced a different selective regime — the **foreground** branch(es) — versus the rest of the tree, the **background**. This is done by adding a `#1` tag directly after the taxon or clade in the tree file. For example, to test whether the chicken lineage alone has a distinct $\omega$:
-
-```
-(...,Duck_Mx,Chicken_Mx #1);
-```
-
-To test the duck and chicken lineages simultaneously:
-
-```
-(...,Duck_Mx #1,Chicken_Mx #1);
-```
-
-To test the entire bird clade — the branch leading to the duck+chicken ancestor *as well as* the two terminal branches — you tag the ancestral node too, which requires the rooted tree so that clade's stem branch actually exists as a single edge:
+Branch and branch-site models require you to tell `CODEML` which branches you hypothesize experienced a different selective regime: the **foreground** branch(es) versus the rest of the tree, the **background**. This is done by adding a `#1` tag directly after the taxon or clade in the tree file. For example, to test the entire bird clade, you tag the ancestral node plus two terminal nodes. In this case, we also need to root the phylogeny as well:
 
 ```
 (...,(Duck_Mx #1,Chicken_Mx #1) #1);
@@ -96,7 +82,7 @@ To test the entire bird clade — the branch leading to the duck+chicken ancesto
 
 Each `#1` you add corresponds to one additional $\omega$ class that `CODEML` will estimate for that group of branches, on top of the background $\omega$ for everything else.
 
-## 5. What the four model classes assume
+## 2. What the four model classes assume
 
 All of these are fit with the same program, `CODEML`, but they distribute the assumption of where $\omega$ can vary very differently. Two control-file variables do the real work: `model` (variation across **branches**) and `NSsites` (variation across **sites**).
 
