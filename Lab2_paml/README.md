@@ -176,13 +176,13 @@ codeml your_control_file.ctl
 
 ## 5. Likelihood ratio tests (LRT)
 
-Every comparison in this lab follows the same logic: a **null model** (fewer free parameters, a special/restricted case) versus an **alternative model** (more free parameters, which contains the null as a special case — i.e. the models are *nested*). You cannot LRT-compare models that aren't nested in this way.
+Every comparison in this lab follows the same logic: a **null model** versus an **alternative model** with more free parameters, where the null hypothesis is a special case (i.e., a nested model). You cannot LRT-compare models that aren't nested in this way.
 
-The test statistic is twice the difference in log-likelihoods:
+The LRT test statistic is twice the difference in log-likelihoods:
 
 $$2\Delta\ell = 2(\ell_{alt} - \ell_{null})$$
 
-Under the null hypothesis, this statistic is asymptotically $\chi^2$-distributed with degrees of freedom equal to the difference in the number of free parameters between the two models. You then get a p-value from the $\chi^2$ distribution (e.g. in R: `pchisq(2*deltaL, df = k, lower.tail = FALSE)`), and reject the simpler (null) model in favor of the more complex one if that p-value is below your significance threshold (typically 0.05).
+Under the null hypothesis, this statistic is asymptotically $\chi^2$-distributed with degrees of freedom equal to the difference in the number of free parameters between the two models. You then get a p-value from the $\chi^2$ distribution (e.g. in R: `pchisq(2*deltaL, df = k, lower.tail = FALSE)`), and reject the null in favor of the more complex one if that p-value is below your significance threshold (typically 0.05).
 
 Standard nested comparisons in this protocol:
 
