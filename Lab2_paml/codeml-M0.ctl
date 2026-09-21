@@ -16,9 +16,9 @@
                    			* 5:gamma;6:2gamma;7:beta;8:beta&w;9:beta&gamma;
                    			* 10:beta&gamma+1; 11:beta&normal>1; 12:0&2normal>1;
                    			* 13:3normal>0
-    CodonFreq = 7        * Codon frequencies
+    CodonFreq = 7        * 0:1/61 each, 1:F1X4, 2:F3X4, 3:codon table, 7 specialized for mutation-selection model
 	  estFreq = 0        * Use observed freqs or estimate freqs by ML
-        clock = 0          * Clock model
-    fix_omega = 0         * Estimate or fix omega
-        omega = 0.5        * Initial or fixed omega
+        clock = 0          * 0:no clock, 1:clock; 2:local clock; 3:CombinedAnalysis
+    fix_omega = 0         * 1: omega or omega_1 fixed, 0: estimate 
+        omega = 0.5        * initial or fixed omega, for codons or codon-based AAs
 

@@ -88,7 +88,7 @@ Each `#1` you add corresponds to one additional $\omega$ class that `CODEML` wil
 
 | Model family | Varies across | `model` | `NSsites` | Question it answers |
 |---|---|---|---|---|
-| Homogeneous (M0) | nothing — one $\omega$ for the whole tree and gene | `0` | `0` | Is the gene, on average, under selection? |
+| Homogeneous (M0) | None| `0` | `0` | Is the gene, on average, under selection? |
 | Site models | codon sites | `0` | `0 1 2 7 8` | Do a subset of *sites* show $\omega > 1$, regardless of lineage? |
 | Branch models | branches (lineages) | `2` | `0` | Do specific *lineages* show a different $\omega$ than the rest of the tree? |
 | Branch-site models | sites *within* specific branches | `2` | `2` | Do specific *sites*, but only along specific *foreground lineages*, show $\omega > 1$? |
