@@ -2,8 +2,7 @@
 
 ## What to include for the submission?
 1. A word/text file to answer the following questions.
-2. The IQ-TREE log file.
-3. 
+2. The output from the branch model.
 
 Zip the above documents into a single file, submit through the Canvas assignment page.
 ---------------------
@@ -18,9 +17,16 @@ Included is the lysozyme sequence alignment of seven primate species originally 
 
 ![image](./branch_model_figure.png) 
 
-4. Based on the log file, what is the best-fitting substitution model selected by BIC (1 pt)?
+[Self-check] The labeled phylogeny should be as follows:
+```
+7 1
+((Hsa_Human,Hla_gibbon) #1,((CguCan_colobus,Pne_langur) #1,Mmu_rhesus),(Ssc_squirrelM,Cja_marmoset));
 
-5. View the *.treefile in FigTree. What is the ultrafast bootstrap support value for the common ancestor of `Amborella_AmTrH1.10G042500.1` and `Zea_GRMZM2G057935_T01` (1 pt)?
+```
 
-6. Given the following species tree, how would you root the phylogeny of the gene tree? Identify one ancient gene duplication and one recent gene duplication to explain the gene tree you get (1 pt)?
+4. Modify the control file to run a branch model where foreground branches are under positive selection. How would you set up the `model` and `NSsites` parameters (1 pt)?
+
+5. Set the output to be `branch.out.txt` (outfile = ###). Run CODEML analysis for the branch model. What are the omega values for the foreground and background, respectively (1 pt)?
+
+6. Given the number of parameters in M0 and the branch model (np), their difference in log likelihood (LnL), perform a chi-square test in R or Excel. What is the p-value for the branch model and does the data support positive selection in Hominoids and Colobines (1 pt)?
 
