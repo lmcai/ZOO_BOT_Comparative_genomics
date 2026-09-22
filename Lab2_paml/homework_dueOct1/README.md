@@ -1,9 +1,9 @@
 # Lab 1 homework: testing altered selection in lysozyme
 
 ## What to include for the submission?
-1. The resulting phylogeny
+1. A word/text file to answer the following questions.
 2. The IQ-TREE log file.
-3. A word/text file to answer the following questions.
+3. 
 
 Zip the above documents into a single file, submit through the Canvas assignment page.
 ---------------------
@@ -14,7 +14,7 @@ Included is the lysozyme sequence alignment of seven primate species originally 
 
 2. Set the output to be `M0.out.txt` (outfile = ###). Run CODEML analysis for the M0 model. What are the omega and log-likelihood estimated from this model? (1pt)
 
-3. We suspect positive selection in the two branches leading to the common ancestor of Hominoids and Colobines as pictured below. How would you label your phylogeny according to the following colored branch pattern (pink branches set as foreground) (1 pt)
+3. Lysozyme was adapted for digestive defense against bacteria in primates that evolved foregut fermentation. Therefore, we suspect positive selection in the two branches leading to the common ancestor of Hominoids and Colobines as pictured below. How would you label your phylogeny according to the following colored branch pattern (pink branches set as foreground) (1 pt)
 
 ![image](./branch_model_figure.png) 
 
