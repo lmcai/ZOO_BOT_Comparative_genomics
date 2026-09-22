@@ -1,4 +1,4 @@
-# Lab 1 homework: evolution of phytochrome in angiosperms
+# Lab 1 homework: testing altered selection in lysozyme
 
 ## What to include for the submission?
 1. The resulting phylogeny
@@ -8,13 +8,15 @@
 Zip the above documents into a single file, submit through the Canvas assignment page.
 ---------------------
 
-Build a phylogeny based on the alignment `phyA_phyC.fas` using IQ-TREE. Answer the following questions:
+Included is the lysozyme sequence alignment of seven primate species originally from Messier and Stewart (1997). The sequence alignment is provided in `lysozyme.phy` and the input phylogeny is provided in `lysozyme.tre`. Use the codeml control file lysozyme.ctl as the template to perform parameter estimation for a Homogeneous model (M0) and a branch model to test for positive selection.
 
-1. View the alignment in AliView, how many sequences are there and what is the length of the alignment (1 pt)?
+1. For the M0 model, how would you set up the `model` and `NSsites` in `lysozyme.ctl` (1 pt)?
 
-2. Infer a Maximum Likelihood phylogeny for this alignment, using the default ModelFinder to find the best substitution model and use 1500 Ultrafast bootstrap replicates to assess branch support. What command did you use? (1pt)
+2. Set the output to be `M0.out.txt` (outfile = ###). Run CODEML analysis for the M0 model. What are the omega and log-likelihood estimated from this model? (1pt)
 
-3. Attach the *.treefile and *.log file to this report (1 pt)
+3. We suspect positive selection in the two branches leading to the common ancestor of Hominoids and Colobines as pictured below. How would you label your phylogeny according to the following colored branch pattern (pink branches set as foreground) (1 pt)
+
+![image](./branch_model_figure.png) 
 
 4. Based on the log file, what is the best-fitting substitution model selected by BIC (1 pt)?
 
@@ -22,8 +24,3 @@ Build a phylogeny based on the alignment `phyA_phyC.fas` using IQ-TREE. Answer t
 
 6. Given the following species tree, how would you root the phylogeny of the gene tree? Identify one ancient gene duplication and one recent gene duplication to explain the gene tree you get (1 pt)?
 
-
-![plant_tree](./plant_species_tree.png)
-
-
-e.g., this gene tree can be explained by a gene duplication in the common ancestor of x and y, and gene losses in the common ancestor of z and w. Describe the precise nodes where the duplication and loss events occurred to get full credit.
