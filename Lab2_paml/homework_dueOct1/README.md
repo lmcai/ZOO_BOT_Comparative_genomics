@@ -1,4 +1,4 @@
-# Lab 1 homework: testing altered selection in lysozyme
+# Lab 2 homework: testing altered selection in lysozyme
 
 ## What to include for the submission?
 1. A word/text file to answer the following questions.
