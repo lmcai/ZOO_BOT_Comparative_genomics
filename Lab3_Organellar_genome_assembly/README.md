@@ -79,20 +79,13 @@ If you can't get it to work, don't worry. You can follow the walkthrough in clas
 
 Geseq (https://chlorobox.mpimp-golm.mpg.de/geseq.html) is a web-based plant organellar genome annotation tool. It does not require installation. Feel free to explore its functions.
 
-## III. In-class exercise: Inferring dN, dS rates from sequence alignment 
+## III. In-class exercise: Assemble a plastid genome from Illumina sequencing 
 
-PAML is a package for maximum likelihood based evolutionary hypothesis testing. It contains many programs developed by Ziheng Yang's group including `CODEML` (for dN/dS rate), `evolver` for simulating phylogeny and sequences, and `MCMCtree` for divergence time estimation. We will be using `CODEML` to infer substitution rates under various scenarios.
+We will do a toy genome assembly and annotation for this lab. Plastid genome has high copy number (given their abundance in the cell) and a conserved structure, making it ideal for this class exercise. For those of you who are interested in assembling your own complex nuclear genome, the overall process will be similar, just 100x more complicated and resource-intensive. 
 
-The data we used for today's in-class exercises come from this paper:
-[Álvarez-Carretero S, Kapli P, Yang Z. 2023. Beginner's guide on the use of PAML to detect positive selection, Mol Biol Evol, 40(4):msad041.](https://academic.oup.com/mbe/article/40/4/msad041/7140562?searchresult=1&login=false)
+The data we used for today comes from two closely related plant species from my recent paper on parasitic plants: https://doi.org/10.1093/gbe/evag025
 
-Recall the interpretation of $\omega$:
-
-* $\omega > 1$ → positive (Darwinian) selection — nonsynonymous changes are favored;
-* $\omega = 1$ → neutral evolution;
-* $\omega < 1$ → negative (purifying) selection — nonsynonymous changes are being removed.
-
-Because most codons in most genes are under some functional constraint, an $\omega$ averaged across an entire gene and an entire tree is almost always < 1, even for genes that experience strong positive selection at a handful of sites or along a handful of branches. The models below were used to estimate $\omega$ for all sites in all branches, for all sites in two types of branches, and for multiple types of sites x branches.
+In a nutshell, parasitic plants dropped 
 
 ### 1. Input dataset
 
