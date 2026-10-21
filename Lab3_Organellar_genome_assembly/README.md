@@ -101,32 +101,47 @@ To access the data, log on to HiperGator and move to our shared scratch director
 
 View the fastq files using the following command. Followed by in-class explanation of `fastq` file format.
 ```
+cd raw_reads/Castilleja_indivisa
+#view the fastq file
+less V350045326_L03_B5GPLAalgdRAAAA-503_1.fq
 ```
 
 ### 2. Running GetOrganelle
-Navigate to your own directory, make a copy of the submission script (e.g. `getorganelle.sh`) that loads the GetOrganelle module and runs assembly:
+Navigate to your own directory, make a copy of the submission script `getorganelle.sh` that loads the GetOrganelle module and runs assembly:
    ```
    #!/bin/sh
    #SBATCH --account=bot4935
    #SBATCH --qos=bot4935
    #SBATCH --job-name=getorg
-   #SBATCH --cpus-per-task=2
-   #SBATCH --mem-per-cpu=4gb
+   #SBATCH --cpus-per-task=4
+   #SBATCH --mem-per-cpu=20gb
    #SBATCH -t 12:00:00
    #SBATCH -o CODEML.%j.out
    #SBATCH --mail-type=END,FAIL
    #SBATCH --mail-user=<email>@ufl.edu
 
-   pwd; hostname; date
-   echo Working directory is $SLURM_SUBMIT_DIR
-   cd $SLURM_SUBMIT_DIR
-
    module load getorganelle/1.7.5.0
 
-   get_organelle_from_reads.py -1 Arabidopsis_simulated.1.fq.gz -2 Arabidopsis_simulated.2.fq.gz -t 2 -o Arabidopsis_simulated.plastome -F embplant_pt -R 10
+   get_organelle_from_reads.py -1 $1 -2 $2 -o $3 -R 15 -k 65,85,105 -F embplant_pt -t 4
    ```
 Then submit and monitor the job:
    ```
-   sbatch getorganelle.sh
+   sbatch getorganelle.sh [path_to_read1] [path_to_reads2]
    squeue -u <user>
    ```
+
+This will take about 30 min to finish, depending on how many resources you requested (e.g., number of CPUs). 
+
+```
+See class demonstration regarding what the program is doing at each step
+```
+
+Let's take a look at the output. Navigate to the output folder `/blue/bot4935/share/Lab3/Cin` then follow in-class instruction
+
+### 3. Resolve inverted or direct repeats in `Bandage` on your laptop
+
+The output assembly graph from GetOrganelle is provided in this repository `` and ``. First, view these file using any text editor you have on your computer (e.g., BBEdit on mac and Notepad on PC). Follow in-class demonstration to edit the `.gfa` file using Bandage. Save the curated plastid genome as fasta files for annotation.
+
+### 4. Plastid genome annotation using GeSeq
+
+GeSeq is a web-based tool for annotation of plant organellar genomes. See the in-class demonstration for its usage.
