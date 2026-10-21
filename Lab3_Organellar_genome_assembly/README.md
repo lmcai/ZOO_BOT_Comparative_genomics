@@ -4,7 +4,7 @@
 
 We will work with GetOrganelle [website](https://github.com/kinggerm/getorganelle) for this lab. The lab focuses on the assembly and annotation of bacterium-like organellar genomes.
 
-It is highly recommended that you work with **HiperGator** for this lab. It is possible to run the analysis **locally on your laptop** if your laptop has 16 GB RAM (memory).
+It is highly recommended that you work with **HiperGator** for this lab. It is possible to run the analysis locally on your laptop if your laptop has 16 GB RAM (memory).
 
 ## II. Pre-class preparation: Install GetOrganelle and Bandage
 
@@ -89,7 +89,10 @@ In a nutshell, parasitic plants rely on host plants for water and nutrients at v
 
 ### 1. Input dataset
 
-The inputs are Illumina sequencing reads from libraries built from whole-genome DNA extraction. This means there is no biased selection in terms of the proportion of the three cellular genomes. We will work with two species *Castilleja indivisa* (entireleaf Indian paintbrush, collected in Austin Texas) and Epifagus virginiana (beechdrop, collected in Harvard Forest, Petersham, MA)
+The inputs are Illumina sequencing reads from libraries built from whole-genome DNA extraction. This means there is no biased selection in terms of the proportion of the three cellular genomes. We will work with two species *Castilleja indivisa* (entireleaf Indian paintbrush, collected in Austin Texas) and *Epifagus virginiana* (beechdrop, collected in Harvard Forest, Petersham, MA)
+
+![Castilleja indivisa](./castilleja.jpeg)
+![Epifagus virginiana](./beechdrop.jpg)
 
 To access the data, log on to HiperGator and move to our shared scratch directory:
    ```
