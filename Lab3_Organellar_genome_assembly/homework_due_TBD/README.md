@@ -8,6 +8,7 @@ Zip the above documents into a single file, submit through the Canvas assignment
 ---------------------
 
 Included is the assembly graph of the plastid genome of a red alga, *Rhodochaete parvula*. The genome is published in this [paper](http://cell.com/current-biology/fulltext/S0960-9822(17)30499-2). The relatively big genome reflects an early evolutionary stage with many cyanobacterial genes still retained in the plastid.
+
 ![Rhodochaete parvula](./Rhodochaete_parvula.jxl)
 
 1. Input reads are stored under the shared lab repository `/blue/bot4935/share/Lab3/fastq`. It is downloaded from the GenBank SRA reads collection `SRR15114502`. Because the plastid genome is larger than most typical plastid genomes, we need to provide reference red algae plastid sequences to facilitate the assembly. This is because the default reference databases used in GetOrganelle are angiosperm plastids that are generally smaller in size and lack many genes from the cyanobacterial genome. Based on the manual of GetOrganelle, which flag can you add to supply a seed reference sequence file? (1pt)
