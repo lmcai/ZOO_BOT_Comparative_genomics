@@ -16,7 +16,8 @@ In this exercise, we will assemble the plastid genome of a red alga, *Rhodochaet
 2. Now run GetOrganelle with 
 - two input reads in `/blue/bot4935/share/Lab3/homework/fastq/`
 - assembly kmer size of 65,85,105
-- 15 rounds of reads extension; plus user-defined seed file `seed.fasta` (provided in /blue/bot4935/share/Lab3/homework and on GitHub)
+- 15 rounds of reads extension
+- user-defined seed file `seed.fasta` (provided in /blue/bot4935/share/Lab3/homework and on GitHub)
 
 Type the full command you use to run the program. (1pt)
 
