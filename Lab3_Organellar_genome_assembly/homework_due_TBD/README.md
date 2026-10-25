@@ -21,7 +21,7 @@ In this exercise, we will assemble the plastid genome of a red alga, *Rhodochaet
 
 	Type the full command you use to run the program. (1pt)
 
-<span style="color:red">The program takes about 15 min to finish using 4 threads on HiperGator. If you cannot get it to work, use the output under the folder on HiperGator `/blue/bot4935/share/Lab3/homework/Rpa_getorganelle_output`. The assembly graph and screen log file are also available as `Rhodochaete_parvula_embplant_pt.K105.complete.graph1.selected_graph.gfa` and `Rhodochaete_parvula.get_org.log.txt` on GitHub.</span>
+$\color{red}{\text{The program takes about 15 min to finish using 4 threads on HiperGator. If you cannot get it to work, use the output under the folder on HiperGator `/blue/bot4935/share/Lab3/homework/Rpa_getorganelle_output`. The assembly graph and screen log file are also available as `Rhodochaete_parvula_embplant_pt.K105.complete.graph1.selected_graph.gfa` and `Rhodochaete_parvula.get_org.log.txt` on GitHub.}}$
 
 3. Based on the log file, what is the read coverage for the plastid assembly? (1pt)
 
