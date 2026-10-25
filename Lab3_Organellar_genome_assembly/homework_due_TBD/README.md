@@ -19,7 +19,7 @@ In this exercise, we will assemble the plastid genome of a red alga, *Rhodochaet
 - 15 rounds of reads extension
 - user-defined seed file `seed.fasta` (provided in /blue/bot4935/share/Lab3/homework and on GitHub)
 
-Type the full command you use to run the program. (1pt)
+	Type the full command you use to run the program. (1pt)
 
 [The program takes about 15 min to finish using 4 threads on HiperGator. If you cannot get it to work, use the output under the folder on HiperGator `/blue/bot4935/share/Lab3/homework/Rpa_getorganelle_output`. The assembly graph and screen log file are also available as `Rhodochaete_parvula_embplant_pt.K105.complete.graph1.selected_graph.gfa` and `Rhodochaete_parvula.get_org.log.txt` on GitHub.]
 
