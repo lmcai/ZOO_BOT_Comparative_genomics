@@ -49,6 +49,6 @@ f. Close the BLAST window and go back to the assembly graph view. Now BLAST hits
 
 Attach the screenshot of the assembly graph with BLAST hits colored (0.5 pt). Are there any genes in the repeat regions (0.5 pt)? 
 
-6. Resolve this graph into a full circle. Export as fasta (Output > Save entire graph as fasta (only positive nodes)). How big (in exact base pairs) is the resolved genome (1 pt)?
+6. Resolve this graph into a full circle. Export as fasta (see below) (0.5 pt). How big (in exact base pairs) is the resolved genome (0.5 pt)?
 
 ![Bandage output](./Bandage.png)
