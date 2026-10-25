@@ -33,7 +33,7 @@ a. Download `Rhodochaete_parvula.genes.fas` from GitHub and save it on your lapt
 
 b. In Bandage, click on the `Create/view BLAST search` button on the left, which will lead you to a BLAST search window
 
-c. Click the blue `Build BLAST Database` button
+c. Step 1, click the blue `Build BLAST Database` button. This is build the search database from our assembly graph.
 
 ![BLAST](./BLAST_1.png)
 
