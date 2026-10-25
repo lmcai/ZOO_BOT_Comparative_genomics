@@ -1,6 +1,6 @@
 # Lab 3 homework: Plastid genome assembly and annotation for red algae
 
-## What to include for the submission?
+## This homework is due Nov 1 at midnight. What to include for the submission?
 1. A word/text file to answer the following questions.
 2. A FASTA file of the fully resolved circularized assembly.
 
