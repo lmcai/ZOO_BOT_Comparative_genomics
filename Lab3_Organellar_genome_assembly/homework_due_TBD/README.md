@@ -7,7 +7,8 @@
 Zip the above documents into a single file, submit through the Canvas assignment page.
 ---------------------
 
-Included is the assembly graph of the plastid genome of a red alga, ###. View and resolve this assembly graph in `Bandage`. Then resolve it into a circular structure and answer the following questions.
+Included is the assembly graph of the plastid genome of a red alga, *Corynoplastis japonica*. View and resolve this assembly graph in `Bandage`. Then resolve it into a circular structure and answer the following questions.
+![Corynoplastis japonica](./image_3495_6467-600x450.png)
 
 1. 
 
