@@ -126,7 +126,7 @@ Navigate to your own directory, make a copy of the submission script `getorganel
    ```
 Then submit and monitor the job:
    ```
-   sbatch getorganelle.sh [path_to_read1] [path_to_reads2]
+   sbatch getorganelle.sh [path_to_read1] [path_to_reads2] [output_prefix]
    squeue -u <user>
    ```
 
