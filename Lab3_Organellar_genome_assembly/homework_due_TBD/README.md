@@ -2,7 +2,7 @@
 
 ## What to include for the submission?
 1. A word/text file to answer the following questions.
-2. GenBank file with gene annotation.
+2. A FASTA file of the fully resolved circularized assembly.
 
 Zip the above documents into a single file, submit through the Canvas assignment page.
 ---------------------
@@ -19,12 +19,30 @@ In this exercise, we will assemble the plastid genome of a red alga, *Rhodochaet
 
 3. Based on the log file, what is the read coverage for the plastid assembly? (1pt)
 
-4. View and resolve the assembly graph in `Bandage`. This graph is slightly more complex than the graph we saw in class. Click on each node to view the base coverage for each node. How many repeat nodes are there in this graph, and what kind of repeat are they (i.e., direct or inverted repeat)? (1 pt)
+4. View the assembly graph in `Bandage`. This graph is slightly more complex than the graph we saw in class. Click on each node to view the base coverage for each node. How many repeat nodes are there in this graph, and what kind of repeat are they (i.e., direct or inverted repeat)? (1 pt)
 
-5. Resolve this graph into a full circle. Export as fasta (Output > Save entire graph as fasta (only positive nodes)). How big (in exact base pairs) is the resolved genome (1 pt)?
+5. Since GeSeq is still not working, we will use the built-in BLAST feature of Bandage to annotate the genome. BLAST is a similarity-based approach to identify genomic regions showing homology to candidate query sequences. Follow these steps to answer the question:
+
+a. Download `Rhodochaete_parvula.genes.fas` from GitHub and save it on your laptop
+
+b. In Bandage, click on the `Create/view BLAST search` button on the left, which will lead you to a BLAST search window
+
+c. Click the blue `Build BLAST Database` button
+
+![BLAST](./BLAST_1.png)
+
+d. In Step 2, click the `Load from FASTA file` to select the `Rhodochaete_parvula.genes.fas` file you just saved on your computer. This set of gene sequences will be BLASTed against the Rhodochaete_parvula genome assembly.
+
+![BLAST](./BLAST_2.png)
+
+e. Click `Run BLAST search` to run the analysis.
+
+![BLAST](./BLAST_3.png)
+
+f. Close the BLAST window and go back to the assembly graph view. Now BLAST hits should be colored individually. 
+
+Attach the screenshot of the assembly graph with BLAST hits colored (0.5 pt). Are there any genes in the repeat regions (0.5 pt)? 
+
+6. Resolve this graph into a full circle. Export as fasta (Output > Save entire graph as fasta (only positive nodes)). How big (in exact base pairs) is the resolved genome (1 pt)?
 
 ![Bandage output](./Bandage.png)
-
-
-
-4. Then resolve it into a circular structure and answer the following questions.
